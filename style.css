@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #fafafa;
+  --border: #d9d9d9;
+  --primary: #333;
+  --accent: #2b8589;
+}
+
+:root,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--primary);
+  display: flex;
+}
+
+main {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: auto;
+  transform: scale(1.25);
+  width: 480px;
+}
+
+h1 {
+  border-bottom: 1px solid var(--border);
+  font-size: 16px;
+  line-height: 44px;
+  padding: 0 16px;
+}
+
+div {
+  padding: 16px;
+}
+
+ol {
+  line-height: 32px;
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+li {}
+
+  li button {
+    width: 100%;
+  }
+
+  li.done button {
+    opacity: 0.15;
+  }
+
+  li:not(.done) button {
+    background: var(--tint);
+    color: white;
+  }
+
+  li:not(.done) ~ li:not(.done) button {
+    background: transparent;
+    color: var(--tint, var(--accent));
+  }
+
+li + li {
+  margin-top: 8px;
+}
+
+button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--tint, var(--accent));
+  border-radius: 8px;
+  color: var(--tint, var(--accent));
+  display: block;
+  font-size: 14px;
+  margin: 0 auto;
+  height: 32px;
+  padding: 0 32px;
+}
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.15;
+  }
+
+  button:not(:disabled):hover {
+    background: var(--tint, var(--accent)) !important;
+    color: #fff !important;
+  }
+
+  button:not(:disabled):active {
+    opacity: 0.65;
+  }

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPC Generator</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+  <main>
+    <h1>NPC</h1>
+    <div x-data="app">
+      <ol>
+        <li>
+          <b style="text-transform: capitalize" x-text="npc.name.label"></b>
+          from
+          <b style="text-transform: capitalize" x-text="npc.place.label"></b>
+        </li>
+          <li>
+            <span style="text-transform: capitalize" x-text="npc.modifier.label"></span>
+            <span style="text-transform: capitalize" x-text="npc.noun.label"></span>
+          </li>
+        <li><H3>Motivations:</H3></li>
+        <template x-for="(mot, index) in npc.motivations" :key="index">
+          <li>
+            <span x-text="mot.motivation"></span>
+            <span x-text="mot.noun"></span>
+          </li>
+        </template>
+        <li><H3>NPC Vibe:</H3></li>
+        <li>
+          <span x-text="npc.powerLevel.level"></span>,
+          <span x-text="npc.powerLevel.strength"></span> the team
+        </li>
+        <li>
+          <b x-text="npc.discussion.bearing.level"></b> and
+          <b x-text="npc.discussion.bearing.type"></b>
+        </li>
+        <li>
+          Wants to talk about <b x-text="npc.discussion.focus.label"></b>
+        </li>
+        <li><H3>Favor Level:</H3></li>
+        <li>
+          <b style="text-transform: capitalize" x-text="npc.favor.level"></b> towards the team
+        </li>
+        <li>
+          Current mood is <b x-text="npc.favor.mood"></b>
+        </li>
+      </ol>
+      <button @click="go" :disabled="generating">Generate New</button>
+      <br/>
+      <a x-bind:href="'?'+npc.url" target="_blank">Share NPC</a>
+      <br/>
+      <br/>
+      <br/>
+      Thank you to:
+      <br/>
+      <a href="http://www.gutenberg.org/ebooks/3201">Moby Word List by Gary Ward</a>
+      <br/>
+      <a href="https://www.drivethrurpg.com/product/134163/UNE-The-Universal-NPC-Emulator-rev">Universal NPC Emulator by Conjecture Games</a>
+    </div>
+  </main>
+  <audio id="no-whammy" src="./no-whammy.m4a"></audio>
+  <script src="./app.js"></script>
+</body>
+</html>
