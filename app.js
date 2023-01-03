@@ -13,17 +13,17 @@ const npcPowerLevel = [{
 }, {
     level: "Busy", 'muchWeaker': 5, 'slightlyWeaker': 20, 'comparable': 80, 'slightlyStronger': 95, 'muchStronger': 100
 }, {
-    level: "Disarray", 'muchWeaker': 8, 'slightlyWeaker': 25, 'comparable': 75, 'slightlyStronger': 92, 'muchStronger': 100
+    level: "In Disarray", 'muchWeaker': 8, 'slightlyWeaker': 25, 'comparable': 75, 'slightlyStronger': 92, 'muchStronger': 100
 }, {
     level: "Chaotic", 'muchWeaker': 12, 'slightlyWeaker': 30, 'comparable': 70, 'slightlyStronger': 88, 'muchStronger': 100
 }]
 
-const npcMotivationVerb = ["advise", "shepherd", "take", "work", "manage", "obtain", "abuse", "discover", "accompany", "suppress", "attempt", "indulge", "deter", "offend", "proclaim", "spoil", "chronicle", "acquire", "guide", "operate", "oppress", "fulfill", "damage", "learn", "access", "interact", "drive", "publicize", "persecute", "refine", "create", "review", "burden", "communicate", "compose", "abduct", "aid", "advocate", "process", "undermine", "promote", "follow", "implement", "report", "explain", "conceive", "advance", "understand", "develop", "discourage", "blight", "guard", "collaborate", "steal", "attend", "progress", "conquer", "strive", "suggest", "detect", "distress", "hinder", "complete", "weaken", "execute", "possess", "plunder", "compel", "achieve", "maintain", "record", "construct", "join", "secure", "realize", "embrace", "encourage", "assist", "inform", "convey", "contact", "agonize", "defile", "patronize", "rob", "pursue", "comprehend", "produce", "depress", "establish", "associate", "administer", "institute", "determine", "overthrow", "prepare", "relate", "account", "seek", "support"]
+const npcMotivationVerb = ["advise", "shepherd", "take", "work", "manage", "obtain", "abuse", "discover", "accompany", "suppress", "attempt", "indulge in", "deter", "offend", "proclaim", "spoil", "chronicle", "acquire", "guide", "operate", "oppress", "fulfill", "damage", "learn", "access", "interact", "drive", "publicize", "persecute", "refine", "create", "review", "burden", "communicate", "compose", "abduct", "aid", "advocate", "process", "undermine", "promote", "follow", "implement", "report", "explain", "conceive", "advance", "understand", "develop", "discourage", "guard", "collaborate", "steal", "attend", "progress", "conquer", "strive for", "suggest", "detect", "distress", "hinder", "complete", "weaken", "execute", "possess", "plunder", "compel", "achieve", "maintain", "record", "construct", "join", "secure", "realize", "embrace", "encourage", "assist", "inform", "convey", "contact", "agonize", "defile", "patronize", "rob", "pursue", "comprehend", "produce", "depress", "establish", "associate", "administer", "institute", "determine", "overthrow", "prepare", "relate", "account", "seek", "support","invent", "study"]
 
-const npcMotivationNoun = ["wealth", "the wealthy", "dreams", "gluttony", "advice", "hardship", "the populous", "discretion", "lust", "propaganda", "affluence", "enemies", "love", "envy", "science", "resources", "the public", "freedom", "greed", "knowledge", "prosperity", "religion", "pain", "laziness", "communications", "poverty", "the poor", "faith", "wrath", "lies", "opulence", "family", "slavery", "pride", "myths", "deprivation", "the elite", "enlightenment", "purity", "riddles", "success", "academia", "racism", "moderation", "stories", "distress", "the forsaken", "sensuality", "vigilance", "legends", "contraband", "the law", "dissonance", "zeal", "industry", "music", "the government", "peace", "composure", "new religions", "literature", "the oppressed", "discrimination", "charity", "progress", "technology", "friends", "disbelief", "modesty", "animals", "alcohol", "criminals", "pleasure", "atrocities", "ghosts", "medicines", "allies", "hate", "cowardice", "magic", "beauty", "secret societies", "happiness", "narcissism", "nature", "strength", "the world", "servitude", "compassion", "old religions", "intelligence", "military", "harmony", "valor", "expertise", "force", "the church", "justice", "patience", "spirits"]
+const npcMotivationNoun = ["wealth", "the wealthy", "dreams", "gluttony", "advice", "hardship", "the populous", "discretion", "lust", "propaganda", "affluence", "enemies", "love", "envy", "science", "resources", "the public", "freedom", "greed", "knowledge", "prosperity", "specific religion", "pain", "laziness", "communications", "poverty", "the poor", "faith", "wrath", "lies", "opulence", "family", "slavery", "pride", "myths", "deprivation", "the elite", "enlightenment", "purity", "riddles", "success", "academia", "racism", "moderation", "stories", "the forsaken", "sensuality", "vigilance", "legends", "contraband", "the law", "dissonance", "zeal", "industry", "music", "the government", "peace", "composure", "new religions", "literature", "the oppressed", "discrimination", "charity", "progress", "technology", "friends", "disbelief", "modesty", "animals", "alcohol", "criminals", "pleasure", "atrocities", "ghosts", "medicines", "allies", "hate", "cowardice", "magic", "beauty", "secret societies", "happiness", "narcissism", "nature", "strength", "the world", "servitude", "compassion", "old religions", "intelligence", "military", "harmony", "valor", "expertise", "an effort", "the church", "justice", "patience", "spirits", "blight", "power", "oppressors", "beasts", "harassment", "the meek", "potency", "pressure", "influence", "intimidation", "coercion", "enforcers", "threats", "might","compulsion","the harassed", "weak", "coerced", "energy", "incapacitated", "feeble"]
 
 const conversationMood = [{
-    level: "Loved",
+    level: "adoration",
     'withdrawn': 1,
     'guarded': 6,
     'cautious': 16,
@@ -41,7 +41,7 @@ const conversationMood = [{
     'helpful': 89,
     'forthcoming': 100
 }, {
-    level: "peaceful",
+    level: "trusting",
     'withdrawn': 3,
     'guarded': 11,
     'cautious': 25,
@@ -77,7 +77,7 @@ const conversationMood = [{
     'helpful': 98,
     'forthcoming': 100
 }, {
-    level: "hated",
+    level: "hatred",
     'withdrawn': 15,
     'guarded': 30,
     'cautious': 69,
@@ -88,40 +88,46 @@ const conversationMood = [{
 }]
 const npcBearing = [{
     level: "scheming",
-    type: ["intent", "bargain", "means", "proposition", "plan", "compromise", "agenda", "arrangement", "negotiation", "plot"]
+    type: ["to discover intent", "to bargain", "know the means of a NPC", "to make a proposition", "come up with plan", "negotiate a compromise", "push their agenda", "to make an arrangement", "to negotiate", "plot something"]
 }, {
     level: "insane",
-    type: ["madness", "fear", "accident", "chaos", "idiocy", "illusion", "turmoil", "confusion", "facade", "bewilderment"]
+    type: ["to hide madness", "to express fear", "to cause an accident", "to sow chaos", "to hide idiocy", "to push an illusion", "to cause turmoil", "to cause confusion", "to show a facade", "to cause bewilderment"]
 }, {
     level: "friendly",
-    type: ["alliance", "comfort", "gratitude", "shelter", "happiness", "support", "promise", "delight", "aid", "celebration"]
+    type: ["an alliance", "to comfort", "to show gratitude", "to provide shelter", "to show happiness", "to give support", "to fulfill a promise", "to give delight", "to give aid", "to celebrate"]
 }, {
     level: "hostile",
-    type: ["death", "capture", "judgment", "combat", "surrender", "rage", "resentment", "submission", "injury", "destruction"]
+    type: ["to kill", "to capture", "to pass judgment", "to fight", "to get surrender", "to rage", "to cause resentment", "submission", "to injure", "to cause destruction"]
 }, {
     level: "inquisitive",
-    type: ["questions", "investigation", "interest", "demand", "suspicion", "request", "curiosity", "skepticism", "command", "petition"]
+    type: ["answers", "an investigation", "something of interest", "a specific demand", "to confirm a suspicion", "to make a request", "express a curiosity", "remove skepticism", "understand a command", "to make a petition"]
 }, {
     level: "knowing",
-    type: ["report", "effects", "examination", "records", "account", "news", "history", "telling", "discourse", "speech"]
+    type: ["a report", "understand effects", "to examination", "to update their records", "to make/get an account", "to hear the news", "pass on some history", "to tell the character's something", "to talk", "to make a speech"]
 }, {
     level: "mysterious",
-    type: ["rumor", "uncertainty", "secrets", "misdirection", "whispers", "lies", "shadows", "enigma", "obscurity", "conundrum"]
+    type: ["to sow a rumor", "to cause uncertainty", "to protect a secret", "to cause misdirection", "to pass on some whispers", "to tell some lies", "to work in the shadows", "to be an enigma", "to remain in obscurity", "to present a conundrum"]
 }, {
     level: "prejudiced",
-    type: ["reputation", "doubt", "bias", "dislike", "Partiality", "belief", "view", "discrimination", "assessment", "difference"]
+    type: ["to ruin a reputation", "to cause doubt", "to bias", "to so discord", "to give partiality", "to believe the worst in the party", "to view the party", "to cause discrimination", "to make an assessment", "to point out the difference"]
 },];
 
-const npcFocus = ["current scene", "last story", "equipment", "parents", "history", "retainers", "wealth", "relics", "last action", "skills", "superiors", "fame", "campaign", "future action", "friends", "allies", "last scene", "contacts", "flaws", "antagonist", "rewards", "experience", "knowledge", "recent scene", "community", "treasure", "the character", "current story", "family", "power", "weapons", "previous scene", "enemy"]
+const npcFocus = ["current scene", "a story, allegory, or metaphor", "other NPC flaws", "equipment", "a character's family", "ancient history", "retainers", "wealth", "a relic", "a skill", "their superiors", "an adventure hook", "character's reputation", "the campaign", "their enemy", "a NPC need", "a new rumor", "a discovered secret", "a future action", "friends", "allies", "a contact to seek out", "their flaws", "an antagonist", "rewards owed", "an experience", "knowledge needed", "a recent event", "a specific community", "treasure", "a character", "the current adventure", "a character's flaw", "their family", "power", "weapons", "a previous event", "a common enemy"];
+
+const mainStat = ["Strength", "Constitution", "Dexterity", "Wisdom", "Intelligence","Charisma"];
 
 function d100() {
     return dN(100);
 }
 
 function d100ReRollMod20(r100, s100) {
-    let v100 = d100();
+    return dNReRollMod20(100, r100, s100)
+}
+
+function dNReRollMod20(length, r100, s100) {
+    let v100 = dN(length);
     if (Math.floor(r100 / 20) == Math.floor(v100 / 20) || Math.floor((s100 ?? r100) / 20) == Math.floor(v100 / 20)) {
-        v100 = d100ReRollMod20(r100, s100);
+        v100 = d100ReRollMod20(length, r100, s100);
     }
     return v100;
 }
@@ -133,7 +139,7 @@ function d10() {
 function getComparablePowerLevel(r100, npcLevel) {
     if (npcLevel.muchWeaker >= r100 + 1) return 'Much Weaker than';
     if (npcLevel.slightlyWeaker >= r100 + 1) return 'Slightly Weaker than';
-    if (npcLevel.comparable >= r100 + 1) return 'Similar to';
+    if (npcLevel.comparable >= r100 + 1) return 'Similar Strength to';
     if (npcLevel.slightlyStronger >= r100 + 1) return 'Slightly Stronger than';
     if (npcLevel.muchStronger >= r100 + 1) return 'Much Stronger than';
     return 'Unknown'
@@ -156,7 +162,9 @@ function d8() {
 }
 
 function dN(num) {
-    return Math.floor(Math.random() * num);
+    const val= Math.floor(Math.random() * num);
+    console.log("roll: d"+num + ' =' + val );
+    return val;
 }
 
 function getBearing(bL, bT) {
@@ -198,13 +206,13 @@ function getFavor(fl, flm) {
 
 
 function getMotivations(n1, n2, n3, v1, v2, v3) {
-    const mNoun1Idx = n1 ? Number.parseInt(n1) : d100();
-    const mNoun2Idx = n2 ? Number.parseInt(n2) : d100ReRollMod20(mNoun1Idx);
-    const mNoun3Idx = n3 ? Number.parseInt(n3) : d100ReRollMod20(mNoun1Idx, mNoun2Idx);
+    const mNoun1Idx = n1 ? Number.parseInt(n1) : dN(npcMotivationNoun.length);
+    const mNoun2Idx = n2 ? Number.parseInt(n2) : dNReRollMod20(npcMotivationNoun.length, mNoun1Idx);
+    const mNoun3Idx = n3 ? Number.parseInt(n3) : dNReRollMod20(npcMotivationNoun.length, mNoun1Idx, mNoun2Idx);
 
-    const verb1Idx = v1 ? Number.parseInt(v1) : d100();
-    const verb2Idx = v2 ? Number.parseInt(v2) : d100();
-    const verb3Idx = v3 ? Number.parseInt(v3) : d100();
+    const verb1Idx = v1 ? Number.parseInt(v1) : dN(npcMotivationVerb.length);
+    const verb2Idx = v2 ? Number.parseInt(v2) : dNReRollMod20(npcMotivationVerb.length, verb1Idx);
+    const verb3Idx = v3 ? Number.parseInt(v3) : dNReRollMod20(npcMotivationVerb.length, verb1Idx, verb2Idx);
 
     return [{
         id: mNoun1Idx, vId: verb1Idx, motivation: npcMotivationVerb[verb1Idx], noun: npcMotivationNoun[mNoun1Idx]
@@ -233,8 +241,14 @@ function buildUrl(npc) {
     params.push({id: 'pla', value: npc.place.id});
     params.push({id: 'fl', value: npc.favor.id});
     params.push({id: 'flm', value: npc.favor.mId});
+    params.push({id: 'st', value: npc.ability.id});
 
     return params.map(p => p.id + '=' + p.value).join('&')
+}
+
+function getPrimaryAbility(param) {
+    const statIdx = param ? Number.parseInt(param) : dN(mainStat.length);
+    return {id: statIdx, label:mainStat[statIdx]}
 }
 
 
@@ -256,6 +270,7 @@ function generate(params) {
     const npcPLA = params?.get('pla');
     const npcFL = params?.get('fl');
     const npcFLM = params?.get('flm');
+    const npcST = params?.get('st');
 
 
 
@@ -267,6 +282,7 @@ function generate(params) {
         powerLevel: getPowerLevel(npcPL, npcPT),
         favor: getFavor(npcFL, npcFLM),
         motivations: getMotivations(npcMN1, npcMN2, npcMN3, npcMV1, npcMV2, npcMV3),
+        ability: getPrimaryAbility(npcST),
         discussion: {
             bearing: getBearing(npcBL, npcBT), focus: getFocus(npcF)
         }

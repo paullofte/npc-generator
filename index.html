@@ -17,36 +17,37 @@
           from
           <b style="text-transform: capitalize" x-text="npc.place.label"></b>
         </li>
-          <li>
-            <span style="text-transform: capitalize" x-text="npc.modifier.label"></span>
-            <span style="text-transform: capitalize" x-text="npc.noun.label"></span>
-          </li>
-        <li><H3>Motivations:</H3></li>
+        <li>
+          <span style="text-transform: capitalize" x-text="npc.modifier.label"></span>
+          <span style="text-transform: capitalize" x-text="npc.noun.label"></span>
+        </li>
+        <li>
+          Demeanor <b x-text="npc.powerLevel.level"></b>
+        </li>
+        <li>
+          <b x-text="npc.discussion.bearing.level" style="text-transform: capitalize"></b> and wanting
+          <b x-text="npc.discussion.bearing.type"></b>
+        </li>
+        <li>
+          A topic to talk about <b x-text="npc.discussion.focus.label"></b>
+        </li>
+        <li>
+          Feels <b style="text-transform: capitalize" x-text="npc.favor.level"></b> towards the team
+        </li>
+        <li>
+          They are <b x-text="npc.powerLevel.strength"></b> the team
+        </li>
+        <li>
+          Interactions will be <b x-text="npc.favor.mood"></b>
+        </li>
+        <li><H3>Possible Motivations:</H3></li>
         <template x-for="(mot, index) in npc.motivations" :key="index">
-          <li>
+          <li style="list-style: circle; margin-left:20px">
             <span x-text="mot.motivation"></span>
             <span x-text="mot.noun"></span>
           </li>
         </template>
-        <li><H3>NPC Vibe:</H3></li>
-        <li>
-          <span x-text="npc.powerLevel.level"></span>,
-          <span x-text="npc.powerLevel.strength"></span> the team
-        </li>
-        <li>
-          <b x-text="npc.discussion.bearing.level"></b> and
-          <b x-text="npc.discussion.bearing.type"></b>
-        </li>
-        <li>
-          Wants to talk about <b x-text="npc.discussion.focus.label"></b>
-        </li>
-        <li><H3>Favor Level:</H3></li>
-        <li>
-          <b style="text-transform: capitalize" x-text="npc.favor.level"></b> towards the team
-        </li>
-        <li>
-          Current mood is <b x-text="npc.favor.mood"></b>
-        </li>
+
       </ol>
       <button @click="go" :disabled="generating">Generate New</button>
       <br/>
