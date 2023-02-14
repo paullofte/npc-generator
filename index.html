@@ -13,47 +13,72 @@
     <div x-data="app">
       <ol>
         <li>
+
+          <input type="checkbox" @click="lock(npc.name)" :checked="isLocked(npc.name)">
           <b style="text-transform: capitalize" x-text="npc.name.label"></b>
+
           from
-          <b style="text-transform: capitalize" x-text="npc.place.label"></b>
+          <input type="checkbox" @click="lock(npc.place)" :checked="isLocked(npc.place)"><b style="text-transform: capitalize" x-text="npc.place.label"></b>
         </li>
         <li>
-          <b style="text-transform: capitalize" x-text="npc.race.label"></b>
-          <span style="text-transform: capitalize" x-text="npc.noun.label"></span>
+          <input type="checkbox" @click="lock(npc.race)" :checked="isLocked(npc.race)">
+          Lineage <b style="text-transform: capitalize" x-text="npc.race.label"></b>
         </li>
         <li>
+          <input type="checkbox" @click="lock(npc.noun)" :checked="isLocked(npc.noun)">
+          Background <b style="text-transform: capitalize" x-text="npc.noun.label"></b>
+        </li>
+        <li>
+          <input type="checkbox" @click="lock(npc.modifier)" :checked="isLocked(npc.modifier)">
           Trait <b style="text-transform: capitalize" x-text="npc.modifier.label"></b>
         </li>
         <li>
+
+          <input type="checkbox" @click="lock(npc.characteristic)" :checked="isLocked(npc.characteristic)">
           Physical Characteristic <b x-text="npc.characteristic.label"></b>
         </li>
         <li>
-          Demeanor <b x-text="npc.powerLevel.level"></b>
+
+          <input type="checkbox" @click="lock(npc.powerLevel.level)" :checked="isLocked(npc.powerLevel.level)">
+          Demeanor <b x-text="npc.powerLevel.level.label"></b>
         </li>
         <li>
+
+          <input type="checkbox" @click="lock(npc.speech)" :checked="isLocked(npc.speech)">
           Speech <b x-text="npc.speech.label"></b>
         </li>
         <li>
-          <b x-text="npc.discussion.bearing.level" style="text-transform: capitalize"></b> and wanting
-          <b x-text="npc.discussion.bearing.type"></b>
+
+          <input type="checkbox" @click="lock(npc.discussion.bearing.level) && lock(npc.discussion.bearing.type)" :checked="isLocked(npc.discussion.bearing.level)">
+          <b x-text="npc.discussion.bearing.level.label" style="text-transform: capitalize"></b> and wanting
+          <b x-text="npc.discussion.bearing.type.label"></b>
         </li>
         <li>
+
+          <input type="checkbox" @click="lock(npc.discussion.focus)" :checked="isLocked(npc.discussion.focus)">
           A topic to talk about <b x-text="npc.discussion.focus.label"></b>
         </li>
         <li>
-          Feels <b style="text-transform: capitalize" x-text="npc.favor.level"></b> towards the team
+          <input type="checkbox" @click="lock(npc.favor.level)" :checked="isLocked(npc.favor.level)">
+          Feels <b style="text-transform: capitalize" x-text="npc.favor.level.label"></b> towards the team
         </li>
         <li>
-          They are <b x-text="npc.powerLevel.strength"></b> the team
+          <input type="checkbox" @click="lock(npc.powerLevel.strength)" :checked="isLocked(npc.powerLevel.strength)">
+          They are <b x-text="npc.powerLevel.strength.label"></b> the team
         </li>
         <li>
-          Interactions will be <b x-text="npc.favor.mood"></b>
+          <input type="checkbox" @click="lock(npc.favor.mood)" :checked="isLocked(npc.favor.mood)">
+          Interactions will be <b x-text="npc.favor.mood.label"></b>
         </li>
         <li><H3>Possible Motivations:</H3></li>
         <template x-for="(mot, index) in npc.motivations" :key="index">
           <li style="list-style: circle; margin-left:20px">
-            <span x-text="mot.motivation"></span>
-            <span x-text="mot.noun"></span>
+
+            <input type="checkbox" @click="lock(mot.motivation)" :checked="isLocked(mot.motivation)">
+            <span x-text="mot.motivation.label"></span>
+
+            <input type="checkbox" @click="lock(mot.noun)" :checked="isLocked(mot.noun)">
+            <span x-text="mot.noun.label"></span>
           </li>
         </template>
 

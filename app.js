@@ -1594,22 +1594,22 @@ function dN(num) {
 function getBearing(bL, bT) {
     const levelIdx = bL ?? d8()
     const typeIdx = bT ?? d10();
-    return {lId: levelIdx, tId: typeIdx, level: npcBearing[levelIdx].level, type: npcBearing[levelIdx].type[typeIdx]}
+    return {level:{ id: levelIdx, label: npcBearing[levelIdx].level, param:'bl'}, type: {id:typeIdx, label: npcBearing[levelIdx].type[typeIdx], param:'bt'}}
 }
 
 function getFocus(fIdx) {
     const focusIdx = fIdx ?? dN(npcFocus.length);
-    return {id: focusIdx, label: npcFocus[focusIdx]}
+    return {id: focusIdx, label: npcFocus[focusIdx], param:'f'}
 }
 
 function getPlace(idx) {
     const placeIdx = idx ?? dN(places.length);
-    return {id: placeIdx, label: places[placeIdx]}
+    return {id: placeIdx, label: places[placeIdx], param:'pla'}
 }
 
 function getName(idx) {
     const nameIdx = idx ?? dN(names.length);
-    return {id: nameIdx, label: names[nameIdx]}
+    return {id: nameIdx, label: names[nameIdx], param:'na'}
 }
 
 function getPowerLevel(pl, pt) {
@@ -1617,7 +1617,7 @@ function getPowerLevel(pl, pt) {
     const npcLevel = npcPowerLevel[level];
     const r100 = pt ? Number.parseInt(pt) :  d100();
 
-    return {id: level, pId: r100, level: npcLevel.level, strength: getComparablePowerLevel(r100, npcLevel)}
+    return {level: {id: level, label: npcLevel.level, param:'pl'}, strength: {id: r100, label:getComparablePowerLevel(r100, npcLevel), param:'pt'}}
 }
 
 function getFavor(fl, flm) {
@@ -1625,7 +1625,7 @@ function getFavor(fl, flm) {
     const npcLevel = conversationMood[level];
     const r100 = flm ? Number.parseInt(flm) :  d100();
 
-    return {id: level, mId: r100, level: npcLevel.level, mood: getMood(r100, npcLevel)}
+    return {level: {id: level, label:npcLevel.level, param:'fl'}, mood: {id: r100, label:getMood(r100, npcLevel), param:'flm'}}
 }
 
 
@@ -1638,44 +1638,43 @@ function getMotivations(n1, n2, n3, v1, v2, v3) {
     const verb2Idx = v2 ? Number.parseInt(v2) : dNReRollMod20(npcMotivationVerb.length, verb1Idx);
     const verb3Idx = v3 ? Number.parseInt(v3) : dNReRollMod20(npcMotivationVerb.length, verb1Idx, verb2Idx);
 
-    return [{
-        id: mNoun1Idx, vId: verb1Idx, motivation: npcMotivationVerb[verb1Idx], noun: npcMotivationNoun[mNoun1Idx]
-    }, {
-        id: mNoun2Idx, vId: verb2Idx, motivation: npcMotivationVerb[verb2Idx], noun: npcMotivationNoun[mNoun2Idx]
-    }, {id: mNoun3Idx, vId: verb3Idx, motivation: npcMotivationVerb[verb3Idx], noun: npcMotivationNoun[mNoun3Idx]}]
+    return [
+        { motivation: {id: verb1Idx, label:npcMotivationVerb[verb1Idx], param:'mv1'} , noun: {id: mNoun1Idx,label:npcMotivationNoun[mNoun1Idx], param:'mn1'}},
+        { motivation: {id: verb2Idx, label:npcMotivationVerb[verb2Idx], param:'mv2'}, noun: {id: mNoun2Idx, label:npcMotivationNoun[mNoun2Idx], param:'mn2'}},
+        { motivation: {id: verb3Idx, label:npcMotivationVerb[verb3Idx], param:'mv3'}, noun: {id: mNoun3Idx, label:npcMotivationNoun[mNoun3Idx], param:'mn3'}}]
 }
 
 function buildUrl(npc) {
     console.log(npc);
     let params = [];
-    params.push({id: 'm', value: npc.modifier.mIdx});
-    params.push({id: 'n', value: npc.noun.nIdx});
-    params.push({id: 'mn1', value: npc.motivations[0].id});
-    params.push({id: 'mn2', value: npc.motivations[1].id});
-    params.push({id: 'mn3', value: npc.motivations[2].id});
-    params.push({id: 'mv1', value: npc.motivations[0].vId});
-    params.push({id: 'mv2', value: npc.motivations[1].vId});
-    params.push({id: 'mv3', value: npc.motivations[2].vId});
-    params.push({id: 'pl', value: npc.powerLevel.id});
-    params.push({id: 'pt', value: npc.powerLevel.pId});
-    params.push({id: 'bl', value: npc.discussion.bearing.lId});
-    params.push({id: 'bt', value: npc.discussion.bearing.tId});
+    params.push({id: 'm', value: npc.modifier.id});
+    params.push({id: 'n', value: npc.noun.id});
+    params.push({id: 'mn1', value: npc.motivations[0].noun.id});
+    params.push({id: 'mn2', value: npc.motivations[1].noun.id});
+    params.push({id: 'mn3', value: npc.motivations[2].noun.id});
+    params.push({id: 'mv1', value: npc.motivations[0].motivation.id});
+    params.push({id: 'mv2', value: npc.motivations[1].motivation.id});
+    params.push({id: 'mv3', value: npc.motivations[2].motivation.id});
+    params.push({id: 'pl', value: npc.powerLevel.level.id});
+    params.push({id: 'pt', value: npc.powerLevel.strength.id});
+    params.push({id: 'bl', value: npc.discussion.bearing.level.id});
+    params.push({id: 'bt', value: npc.discussion.bearing.type.id});
     params.push({id: 'f', value: npc.discussion.focus.id});
     params.push({id: 'na', value: npc.name.id});
     params.push({id: 'pla', value: npc.place.id});
-    params.push({id: 'fl', value: npc.favor.id});
-    params.push({id: 'flm', value: npc.favor.mId});
+    params.push({id: 'fl', value: npc.favor.level.id});
+    params.push({id: 'flm', value: npc.favor.mood.id});
     params.push({id: 'st', value: npc.ability.id});
-    params.push({id: 'sp', value: npc.speech.idx});
-    params.push({id: 'ch', value: npc.characteristic.idx});
-    params.push({id: 'r', value: npc.race.idx});
+    params.push({id: 'sp', value: npc.speech.id});
+    params.push({id: 'ch', value: npc.characteristic.id});
+    params.push({id: 'r', value: npc.race.id});
 
     return params.map(p => p.id + '=' + p.value).join('&')
 }
 
-function getPrimaryAbility(param) {
-    const statIdx = param ? Number.parseInt(param) : dN(mainStat.length);
-    return {id: statIdx, label:mainStat[statIdx]}
+function getPrimaryAbility(pidx) {
+    const statIdx = pidx ? Number.parseInt(pidx) : dN(mainStat.length);
+    return {id: statIdx, label:mainStat[statIdx], param:'st'}
 }
 
 
@@ -1705,13 +1704,13 @@ function generate(params) {
 
 
     let npc = {
-        race: {idx: npcR, label: npcRace[npcR]},
+        race: {id: npcR, label: npcRace[npcR], param:'r'},
         name: getName(npcNA),
         place: getPlace(npcPLA),
-        modifier: {mIdx: npcM, label: npcModifier[npcM]},
-        noun: {nIdx: npcN, label: npcNoun[npcN]},
-        characteristic: {idx: npcCH, label:npcCharacteristic[npcCH]},
-        speech: {idx: npcSP, label: npcSpeech[npcSP]},
+        modifier: {id: npcM, label: npcModifier[npcM], param:'m'},
+        noun: {id: npcN, label: npcNoun[npcN], param:'n'},
+        characteristic: {id: npcCH, label:npcCharacteristic[npcCH], param:'ch'},
+        speech: {id: npcSP, label: npcSpeech[npcSP], param:'sp'},
         powerLevel: getPowerLevel(npcPL, npcPT),
         favor: getFavor(npcFL, npcFLM),
         motivations: getMotivations(npcMN1, npcMN2, npcMN3, npcMV1, npcMV2, npcMV3),
@@ -1720,6 +1719,8 @@ function generate(params) {
             bearing: getBearing(npcBL, npcBT), focus: getFocus(npcF)
         }
     };
+
+    npc.lockedParams = params ?? [];
     npc.url = buildUrl(npc)
     return npc;
 }
@@ -1732,16 +1733,33 @@ function shuffle(items) {
 }
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('app', () => ({
+    Alpine.data('app', (initialNPC = generate(new URLSearchParams(location.search))) => ({
         generating: false, get params() {
             return new URLSearchParams(location.search)
-        }, npc: generate(new URLSearchParams(location.search)), go() {
+        }, npc: initialNPC,
+        go() {
             document.getElementById('no-whammy').play()
-            this.generating = setInterval(() => this.npc = generate(), 150)
+            this.generating = setInterval(() => this.npc = generate(this.npc.lockedParams), 150)
             setTimeout(() => {
                 clearInterval(this.generating)
                 this.generating = false
             }, 5150)
         },
+        isLocked(param) {
+            const existing = this.npc.lockedParams.get(param.param);
+            if(existing) {
+                return true;
+            }
+            return false;
+        },
+        lock(param) {
+            const existing = this.npc.lockedParams.get(param.param);
+            if(existing) {
+                this.npc.lockedParams.delete(param.param)
+            } else {
+                this.npc.lockedParams.set(param.param, param.id);
+            }
+        }
+
     }))
 })
